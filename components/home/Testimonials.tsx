@@ -12,14 +12,9 @@ type Review = {
   rating: number
 }
 
-const fallback: Review[] = [
-  { id: '1', name: 'Angela Cruz', event: 'Wedding · Tagaytay', text: 'PrismoLens made our wedding unforgettable! Guests were lining up all night for the booth.', rating: 5 },
-  { id: '2', name: 'Marco Reyes', event: '18th Birthday · Quezon City', text: 'Super fun setup and the prints came out amazing. Everyone loved the custom photo strips!', rating: 5 },
-  { id: '3', name: 'Jasmine Santos', event: 'Corporate Gala · BGC', text: 'Very professional team, arrived on time, and the setup was gorgeous.', rating: 5 },
-]
 
 export default function Testimonials() {
-  const [reviews, setReviews] = useState<Review[]>(fallback)
+  const [reviews, setReviews] = useState<Review[]>([])
   const [loading, setLoading] = useState(true)
   const [submitted, setSubmitted] = useState(false)
   const [form, setForm] = useState({ name: '', event: '', text: '', rating: 5 })
@@ -32,7 +27,7 @@ export default function Testimonials() {
       .select('*')
       .eq('approved', true)
       .order('created_at', { ascending: false })
-    if (!error && data && data.length > 0) setReviews(data)
+    if (!error && data) setReviews(data)
     setLoading(false)
   }
 
@@ -52,8 +47,7 @@ export default function Testimonials() {
     <section className={styles.section}>
       <div className={styles.inner}>
         <div className={styles.header}>
-          <span className={styles.label}>Trusted by</span>
-          <h2 className={styles.title}>What Our Clients Say</h2>
+          <p className={styles.title}>Reviews:</p>
         </div>
 
         {loading ? (
