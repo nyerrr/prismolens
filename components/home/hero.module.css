@@ -1,0 +1,55 @@
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 4rem 2rem; padding-top: calc(64px + 4rem);
+  position: relative; overflow: hidden;
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.hero.visible { opacity: 1; transform: translateY(0); }
+.bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(212,168,67,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.ring {
+  position: absolute; width: 600px; height: 600px;
+  border: 0.5px solid rgba(212,168,67,0.1); border-radius: 50%;
+  top: 50%; left: 50%; transform: translate(-50%,-50%); pointer-events: none;
+}
+.ring2 { width: 900px; height: 900px; border-color: rgba(212,168,67,0.05); }
+.badge {
+  background: rgba(212,168,67,0.12); border: 0.5px solid rgba(212,168,67,0.3);
+  color: var(--gold); font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+  padding: 6px 16px; border-radius: 100px; margin-bottom: 2rem;
+  animation: fadeUp 0.6s ease 0.2s both;
+}
+.heading {
+  font-family: var(--font-display); font-size: clamp(3rem,8vw,6rem);
+  font-weight: 900; line-height: 1.05; margin-bottom: 1.5rem; max-width: 800px;
+  animation: fadeUp 0.6s ease 0.35s both;
+}
+.em { font-style: italic; color: var(--gold); }
+.sub {
+  font-size: 18px; color: var(--muted); max-width: 500px;
+  line-height: 1.7; margin-bottom: 3rem;
+  animation: fadeUp 0.6s ease 0.5s both;
+}
+.btns { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; animation: fadeUp 0.6s ease 0.65s both; }
+.btnPrimary {
+  background: var(--gold); color: var(--dark); font-weight: 600;
+  padding: 14px 32px; border-radius: 100px; font-size: 15px;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.btnPrimary:hover { opacity: 0.88; transform: translateY(-2px); }
+.btnOutline {
+  background: transparent; color: var(--white);
+  padding: 14px 32px; border-radius: 100px;
+  border: 1px solid rgba(255,255,255,0.2); font-size: 15px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.btnOutline:hover { border-color: var(--white); transform: translateY(-2px); }
+.stats { display: flex; gap: 3rem; margin-top: 5rem; flex-wrap: wrap; justify-content: center; animation: fadeUp 0.6s ease 0.8s both; }
+.statNum { font-family: var(--font-display); font-size: 2.5rem; font-weight: 700; color: var(--gold); }
+.statLabel { font-size: 13px; color: var(--muted); margin-top: 4px; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }

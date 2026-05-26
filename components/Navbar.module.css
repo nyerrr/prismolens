@@ -1,0 +1,28 @@
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(13,13,13,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 0.5px solid rgba(212,168,67,0.2);
+  padding: 0 2rem;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 64px;
+}
+.logo { display: flex; align-items: center; gap: 10px; }
+.logoCircle {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--dark-3); border: 1.5px solid var(--gold);
+  display: flex; align-items: center; justify-content: center; font-size: 16px;
+}
+.brand { font-family: var(--font-display); font-size: 15px; font-weight: 700; color: var(--white); }
+.brandAccent { color: var(--gold); }
+.links { display: flex; gap: 1.5rem; align-items: center; }
+.link { color: var(--muted); font-size: 13px; transition: color 0.2s; }
+.link:hover, .link.active { color: var(--white); }
+.agentLink { color: var(--gold); font-size: 13px; }
+.cta {
+  background: var(--gold); color: var(--dark);
+  font-size: 13px; font-weight: 500;
+  padding: 8px 18px; border-radius: 100px; transition: opacity 0.2s;
+}
+.cta:hover { opacity: 0.85; }
+@media (max-width: 768px) { .links { display: none; } }
