@@ -141,7 +141,7 @@ export default function ChatPage() {
             value={input}
             onChange={e => setInput(e.target.value)}
             onKeyDown={handleKey}
-            rows={1}
+            rows={3}
           />
           <button
             className={styles.send}
