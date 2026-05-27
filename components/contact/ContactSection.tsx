@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import styles from './ContactSection.module.css'
+import { FaInstagram, FaFacebookMessenger, FaTiktok } from 'react-icons/fa6'
 
 const eventTypes = ['Wedding', 'Birthday / Debut', 'Corporate Event', 'Graduation', 'Prom / Cotillion', 'Other']
 const packageOptions = ['Classic (₱5,500 / 3hrs)', 'Gold (₱9,500 / 5hrs)', 'Prismo Elite (₱16,000 / 8hrs)', 'Custom Quote']
@@ -46,47 +47,42 @@ export default function ContactSection() {
         <div className={styles.info}>
           <h2 className={styles.infoTitle}>Contact Details</h2>
 
-          <div className={styles.details}>
-            <div className={styles.detail}>
-              <div className={styles.detailIcon}>📞</div>
-              <div>
-                <div className={styles.detailLabel}>Phone / Viber</div>
-                <div className={styles.detailValue}>+63 917 123 4567</div>
-              </div>
-            </div>
-            <div className={styles.detail}>
-              <div className={styles.detailIcon}>📧</div>
-              <div>
-                <div className={styles.detailLabel}>Email</div>
-                <div className={styles.detailValue}>hello@prismolens.ph</div>
-              </div>
-            </div>
-            <div className={styles.detail}>
-              <div className={styles.detailIcon}>📍</div>
-              <div>
-                <div className={styles.detailLabel}>Based in</div>
-                <div className={styles.detailValue}>Quezon City, Metro Manila</div>
-                <div className={styles.detailSub}>Available nationwide</div>
-              </div>
-            </div>
-            <div className={styles.detail}>
-              <div className={styles.detailIcon}>🕐</div>
-              <div>
-                <div className={styles.detailLabel}>Office Hours</div>
-                <div className={styles.detailValue}>Mon–Sat · 9AM–8PM</div>
-              </div>
+          <div className={styles.detail}>
+            <div className={styles.detailIcon}><FaInstagram /></div>
+            <div>
+              <div className={styles.detailLabel}>Instagram</div>
+              <a href="https://instagram.com/prismolens_ofc" target="_blank" rel="noopener noreferrer" className={styles.detailLink}>
+                prismolens_ofc
+              </a>
             </div>
           </div>
 
-          <div className={styles.aiCard}>
-            <div className={styles.aiCardTop}>
-              <span className={styles.aiIcon}>✨</span>
-              <div>
-                <div className={styles.aiTitle}>Need a quick answer?</div>
-                <div className={styles.aiSub}>Our AI agent answers instantly — packages, pricing, availability.</div>
-              </div>
+          <div className={styles.detail}>
+            <div className={styles.detailIcon}><FaTiktok /></div>
+            <div>
+              <div className={styles.detailLabel}>Tiktok</div>
+              <a href="https://tiktok.com/@prismolensofc" target="_blank" rel="noopener noreferrer" className={styles.detailLink}>
+                prismolensofc
+              </a>
             </div>
-            <Link href="/chat" className={styles.aiBtn}>Chat with AI Agent →</Link>
+          </div>
+
+          <div className={styles.detail}>
+            <div className={styles.detailIcon}>📍</div>
+            <div>
+              <div className={styles.detailLabel}>Based in</div>
+              <div className={styles.detailValue}>Imus City, Cavite</div>
+            </div>
+          </div>
+
+          <div className={styles.detail}>
+            <div className={styles.detailIcon}><FaFacebookMessenger /></div>
+            <div>
+              <div className={styles.detailLabel}>Messenger</div>
+              <a href="https://www.facebook.com/prismolensofficial/" target="_blank" rel="noopener noreferrer" className={styles.detailLink}>
+                PrismoLens Photo Booth Services
+              </a>
+            </div>
           </div>
         </div>
 

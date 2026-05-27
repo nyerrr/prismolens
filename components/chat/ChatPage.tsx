@@ -14,7 +14,8 @@ const suggestions = [
   'What packages do you offer?',
   'How do I book a date?',
   'What areas do you cover?',
-  'What is included in Gold?',
+  'What is included in Magnetic?',
+  'Whats included in Basic?',
   'How much is an extra hour?',
   'Do you do same-day bookings?',
 ]
