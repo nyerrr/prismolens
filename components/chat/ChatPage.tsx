@@ -17,7 +17,6 @@ const suggestions = [
   'What is included in Magnetic?',
   'Whats included in Basic?',
   'How much is an extra hour?',
-  'Do you do same-day bookings?',
 ]
 
 function getTime() {

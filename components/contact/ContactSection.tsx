@@ -1,5 +1,6 @@
 'use client'
 
+import { supabase } from '@/lib/supabase'
 import { useState } from 'react'
 import Link from 'next/link'
 import styles from './ContactSection.module.css'
@@ -31,13 +32,38 @@ export default function ContactSection() {
     setForm(prev => ({ ...prev, [field]: value }))
   }
 
+
   async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    setLoading(true)
-    await new Promise(r => setTimeout(r, 1000)) // replace with actual API call
-    setLoading(false)
-    setSubmitted(true)
+  e.preventDefault()
+  setLoading(true)
+
+  const payload = {
+    first_name: form.firstName,
+    last_name: form.lastName,
+    email: form.email,
+    phone: form.phone,
+    event_type: form.eventType,
+    event_date: form.eventDate,
+    package: form.package,
+    message: form.message,
   }
+
+  const { error } = await supabase.from('inquiries').insert([payload])
+
+  if (!error) {
+    await fetch('/api/inquiry', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    })
+    setSubmitted(true)
+  } else {
+    console.error(error)
+  }
+
+  setLoading(false)
+}
+
 
   return (
     <section className={styles.section}>
