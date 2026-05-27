@@ -22,26 +22,18 @@ export const metadata: Metadata = {
   authors: [{ name: 'PrismoLens Photo Booth Services' }],
   creator: 'PrismoLens',
   openGraph: {
-    type: 'website',
-    locale: 'en_PH',
-    url: 'https://www.prismolens.ph',
-    siteName: 'PrismoLens Photo Booth Services',
-    title: 'PrismoLens Photo Booth Services Philippines',
-    description: 'Premium photo booth rental services for weddings, debuts, corporate events, and parties across the Philippines.',
-    images: [
-      {
-        url: '/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'PrismoLens Photo Booth Services',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'PrismoLens Photo Booth Services Philippines',
-    description: 'Premium photo booth rental services across the Philippines.',
-  },
+  type: 'website',
+  locale: 'en_PH',
+  url: 'https://prismolens-faah.vercel.app',
+  siteName: 'PrismoLens Photo Booth Services',
+  title: 'PrismoLens Photo Booth Services Philippines',
+  description: 'Premium photo booth rental services for weddings, debuts, corporate events, and parties across the Philippines.',
+},
+twitter: {
+  card: 'summary_large_image',
+  title: 'PrismoLens Photo Booth Services Philippines',
+  description: 'Premium photo booth rental services across the Philippines.',
+},
   robots: {
     index: true,
     follow: true,
