@@ -92,7 +92,7 @@ export default function ChatPage() {
       <div className={styles.header}>
         <div className={styles.avatar}>✨</div>
         <div>
-          <h1 className={styles.title}>Prisma — PrismoLens AI</h1>
+          <h1 className={styles.title}>Prisma - PrismoLens AI</h1>
           <div className={styles.status}>
             <span className={styles.dot} />
             Online · Replies instantly
