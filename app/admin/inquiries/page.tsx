@@ -65,9 +65,6 @@ export default function InquiriesPage() {
     <div style={{ minHeight: '100vh', padding: '2rem', maxWidth: '1100px', margin: '0 auto' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
         <h1 style={{ fontSize: '1.5rem', fontWeight: 700 }}>Inquiries</h1>
-        <button onClick={handleLogout} style={{ padding: '8px 16px', borderRadius: '8px', border: '1px solid #333', background: 'transparent', color: '#fff', cursor: 'pointer' }}>
-          Logout
-        </button>
       </div>
 
       {loading ? <p>Loading...</p> : (
