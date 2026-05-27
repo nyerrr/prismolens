@@ -1,0 +1,153 @@
+.section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 2rem 4rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem;
+  background: var(--dark-2);
+  border: 0.5px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius);
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.card:hover {
+  border-color: rgba(212,168,67,0.3);
+  transform: translateY(-4px);
+}
+
+.featured {
+  border-color: rgba(212,168,67,0.4);
+  background: linear-gradient(160deg, rgba(212,168,67,0.06) 0%, var(--dark-2) 50%);
+}
+
+.badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--gold);
+  color: var(--dark);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 4px 16px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+.cardTop {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.name {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.tagline {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.price {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin-top: 0.5rem;
+}
+
+.duration {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.check {
+  font-size: 8px;
+  color: var(--gold);
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+
+.btn {
+  display: block;
+  text-align: center;
+  padding: 12px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid rgba(212,168,67,0.3);
+  color: var(--white);
+  transition: all 0.2s;
+}
+
+.btn:hover {
+  border-color: var(--gold);
+  transform: translateY(-1px);
+}
+
+.btnFeatured {
+  background: var(--gold);
+  color: var(--dark);
+  border-color: var(--gold);
+}
+
+.btnFeatured:hover {
+  opacity: 0.88;
+}
+
+.note {
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 2rem;
+  line-height: 1.7;
+}
+
+.noteLink {
+  color: var(--gold);
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 560px) {
+  .grid { grid-template-columns: 1fr; }
+}
