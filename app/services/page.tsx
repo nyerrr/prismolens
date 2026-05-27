@@ -7,7 +7,7 @@ import ServicesCTA from '@/components/services/ServicesCTA'
 
 export const metadata: Metadata = {
   title: 'Photo Booth Services',
-  description: 'From weddings and debuts to corporate events and graduations - PrismoLens offers premium photo booth setups for every occasion across the Philippines.',
+  description: 'From weddings and debuts to corporate events and graduations — PrismoLens offers premium photo booth setups for every occasion across the Philippines.',
   alternates: { canonical: 'https://www.prismolens.ph/services' },
   openGraph: {
     title: 'Photo Booth Services | PrismoLens',
