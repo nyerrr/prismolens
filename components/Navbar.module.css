@@ -264,3 +264,19 @@
   .drawer { display: none; }
   .overlay { display: none; }
 }
+
+@media (max-width: 768px) {
+  .links { display: none; }
+  .cta { display: none; }
+  .hamburger { display: flex; }
+}
+
+@media (min-width: 769px) {
+  .drawer { display: none; }
+  .overlay { display: none; }
+}
+
+.hamburgerOpen {
+  opacity: 0;
+  pointer-events: none;
+}

@@ -51,14 +51,14 @@ export default function Navbar() {
         <div className={styles.right}>
           <Link href="/contact" className={styles.cta}>Book Now</Link>
           <button
-            className={styles.hamburger}
-            onClick={() => setOpen(!open)}
-            aria-label="Toggle menu"
-          >
-            <span className={`${styles.bar} ${open ? styles.bar1Open : ''}`} />
-            <span className={`${styles.bar} ${open ? styles.bar2Open : ''}`} />
-            <span className={`${styles.bar} ${open ? styles.bar3Open : ''}`} />
-          </button>
+          className={`${styles.hamburger} ${open ? styles.hamburgerOpen : ''}`}
+          onClick={() => setOpen(!open)}
+          aria-label="Toggle menu"
+        >
+          <span className={`${styles.bar} ${open ? styles.bar1Open : ''}`} />
+          <span className={`${styles.bar} ${open ? styles.bar2Open : ''}`} />
+          <span className={`${styles.bar} ${open ? styles.bar3Open : ''}`} />
+        </button>
         </div>
       </nav>
 
