@@ -3,7 +3,7 @@ import './globals.css'
 import Navbar from '@/components/Navbar'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.prismolens.ph'),
+  metadataBase: new URL('https://prismolens-faah.vercel.app'),
   title: {
     default: 'PrismoLens Photo Booth Services Philippines',
     template: '%s | PrismoLens Photo Booth',
@@ -41,7 +41,6 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'PrismoLens Photo Booth Services Philippines',
     description: 'Premium photo booth rental services across the Philippines.',
-    images: ['/og-image.jpg'],
   },
   robots: {
     index: true,
