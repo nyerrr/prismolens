@@ -4,6 +4,7 @@ import ServicesHero from '@/components/services/ServicesHero'
 import ServicesGrid from '@/components/services/ServicesGrid'
 import HowItWorks from '@/components/services/HowItWorks'
 import ServicesCTA from '@/components/services/ServicesCTA'
+import FadeIn from '@/components/FadeIn'
 
 export const metadata: Metadata = {
   title: 'Photo Booth Services',
@@ -19,10 +20,10 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   return (
     <>
-      <PageTransition delay={0}><ServicesHero /></PageTransition>
-      <PageTransition delay={150}><ServicesGrid /></PageTransition>
-      <PageTransition delay={300}><HowItWorks /></PageTransition>
-      <PageTransition delay={450}><ServicesCTA /></PageTransition>
+      <ServicesHero />
+      <FadeIn><ServicesGrid /></FadeIn>
+      <FadeIn delay={0.1}><HowItWorks /></FadeIn>
+      <FadeIn delay={0.2}><ServicesCTA /></FadeIn>
     </>
   )
 }

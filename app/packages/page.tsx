@@ -4,6 +4,7 @@ import PackagesHero from '@/components/packages/PackagesHero'
 import PackagesGrid from '@/components/packages/PackagesGrid'
 import PackagesCompare from '@/components/packages/PackagesCompare'
 import PackagesCTA from '@/components/packages/PackagesCTA'
+import FadeIn from '@/components/FadeIn'
 
 export const metadata: Metadata = {
   title: 'Packages & Pricing',
@@ -19,10 +20,10 @@ export const metadata: Metadata = {
 export default function PackagesPage() {
   return (
     <>
-      <PageTransition delay={0}><PackagesHero /></PageTransition>
-      <PageTransition delay={150}><PackagesGrid /></PageTransition>
-      <PageTransition delay={300}><PackagesCompare /></PageTransition>
-      <PageTransition delay={450}><PackagesCTA /></PageTransition>
+     <PackagesHero />
+      <FadeIn delay={0.1}><PackagesGrid /></FadeIn>
+      <FadeIn delay={0.2}><PackagesCompare /></FadeIn>
+      <FadeIn delay={0.3}><PackagesCTA /></FadeIn>
     </>
   )
 }

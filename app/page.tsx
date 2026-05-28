@@ -3,6 +3,7 @@ import Hero from '@/components/home/hero'
 import Features from '@/components/home/Features'
 import Testimonials from '@/components/home/Testimonials'
 import HomeCTA from '@/components/home/HomeCTA'
+import FadeIn from '@/components/FadeIn'
 
 export const metadata: Metadata = {
   description:
@@ -13,9 +14,9 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <Features />
-      <Testimonials />
-      <HomeCTA />
+      <FadeIn><Features /></FadeIn>
+      <FadeIn delay={0.1}><Testimonials /></FadeIn>
+      <FadeIn delay={0.2}><HomeCTA /></FadeIn>
     </>
   )
 }

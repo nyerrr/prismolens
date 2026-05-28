@@ -3,6 +3,7 @@ import PageTransition from '@/components/PageTransition'
 import GalleryHero from '@/components/gallery/GalleryHero'
 import GalleryGrid from '@/components/gallery/GalleryGrid'
 import GalleryCTA from '@/components/gallery/GalleryCTA'
+import FadeIn from '@/components/FadeIn'
 
 export const metadata: Metadata = {
   title: 'Gallery',
@@ -18,9 +19,9 @@ export const metadata: Metadata = {
 export default function GalleryPage() {
   return (
     <>
-      <PageTransition delay={0}><GalleryHero /></PageTransition>
-      <PageTransition delay={150}><GalleryGrid /></PageTransition>
-      <PageTransition delay={300}><GalleryCTA /></PageTransition>
+      <GalleryHero />
+      <FadeIn delay={0.1}><GalleryGrid /></FadeIn>
+      <FadeIn delay={0.2}><GalleryCTA /></FadeIn>
     </>
   )
 }

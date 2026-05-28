@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import PageTransition from '@/components/PageTransition'
 import ContactHero from '@/components/contact/ContactHero'
 import ContactSection from '@/components/contact/ContactSection'
+import FadeIn from '@/components/FadeIn'
 
 export const metadata: Metadata = {
   title: 'Book Now',
@@ -17,8 +18,8 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-      <PageTransition delay={0}><ContactHero /></PageTransition>
-      <PageTransition delay={150}><ContactSection /></PageTransition>
+      <ContactHero />
+      <FadeIn delay={0.1}><ContactSection /></FadeIn>
     </>
   )
 }
