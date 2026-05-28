@@ -22,11 +22,22 @@ type FormState = {
   lastName: string
   email: string
   phone: string
-  messenger: string   
+  messenger: string
   eventType: string
   eventDate: string
   package: string
   message: string
+}
+
+type FormErrors = Partial<Record<keyof FormState, string>>
+
+function validateEmail(email: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+}
+
+function validatePhone(phone: string) {
+  const cleaned = phone.replace(/\s/g, '')
+  return /^(\+63|0)9\d{9}$/.test(cleaned)
 }
 
 export default function ContactSection() {
@@ -34,46 +45,63 @@ export default function ContactSection() {
     firstName: '', lastName: '', email: '', phone: '', messenger: '',
     eventType: '', eventDate: '', package: '', message: ''
   })
+  const [errors, setErrors] = useState<FormErrors>({})
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
 
   function update(field: keyof FormState, value: string) {
     setForm(prev => ({ ...prev, [field]: value }))
+    if (errors[field]) setErrors(prev => ({ ...prev, [field]: undefined }))
   }
 
+  function validate(): boolean {
+    const newErrors: FormErrors = {}
+
+    if (!validateEmail(form.email)) {
+      newErrors.email = 'Please enter a valid email address.'
+    }
+
+    if (!validatePhone(form.phone)) {
+      newErrors.phone = 'Please enter a valid PH number (e.g. 09XX XXX XXXX).'
+    }
+
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
 
   async function handleSubmit(e: React.FormEvent) {
-  e.preventDefault()
-  setLoading(true)
+    e.preventDefault()
+    if (!validate()) return
 
-  const payload = {
-    first_name: form.firstName,
-    last_name: form.lastName,
-    email: form.email,
-    phone: form.phone,
-    messenger: form.messenger,
-    event_type: form.eventType,
-    event_date: form.eventDate,
-    package: form.package,
-    message: form.message,
+    setLoading(true)
+
+    const payload = {
+      first_name: form.firstName,
+      last_name: form.lastName,
+      email: form.email,
+      phone: form.phone,
+      messenger: form.messenger,
+      event_type: form.eventType,
+      event_date: form.eventDate,
+      package: form.package,
+      message: form.message,
+    }
+
+    const { error } = await supabase.from('inquiries').insert([payload])
+
+    if (!error) {
+      await fetch('/api/inquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+      setSubmitted(true)
+    } else {
+      console.error(error)
+    }
+
+    setLoading(false)
   }
-
-  const { error } = await supabase.from('inquiries').insert([payload])
-
-  if (!error) {
-    await fetch('/api/inquiry', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    })
-    setSubmitted(true)
-  } else {
-    console.error(error)
-  }
-
-  setLoading(false)
-}
-
 
   return (
     <section className={styles.section}>
@@ -147,11 +175,25 @@ export default function ContactSection() {
               <div className={styles.formRow}>
                 <div className={styles.field}>
                   <label>Email</label>
-                  <input type="email" placeholder="juan@email.com" value={form.email} onChange={e => update('email', e.target.value)} required />
+                  <input
+                    type="email"
+                    placeholder="juan@email.com"
+                    value={form.email}
+                    onChange={e => update('email', e.target.value)}
+                    required
+                  />
+                  {errors.email && <span className={styles.error}>{errors.email}</span>}
                 </div>
                 <div className={styles.field}>
                   <label>Phone / Viber</label>
-                  <input type="text" placeholder="+63 9XX XXX XXXX" value={form.phone} onChange={e => update('phone', e.target.value)} required />
+                  <input
+                    type="text"
+                    placeholder="+63 9XX XXX XXXX"
+                    value={form.phone}
+                    onChange={e => update('phone', e.target.value)}
+                    required
+                  />
+                  {errors.phone && <span className={styles.error}>{errors.phone}</span>}
                 </div>
                 <div className={styles.field}>
                   <label>Messenger Name <span className={styles.optional}>(optional)</span></label>
