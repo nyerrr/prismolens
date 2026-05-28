@@ -112,7 +112,15 @@ export default function ContactSection() {
           <h2 className={styles.infoTitle}>Contact Details</h2>
 
           <div className={styles.detail}>
-            <div className={styles.detailIcon}><FaInstagram /></div>
+            <div className={styles.detailIcon}>
+              <a
+                href="https://instagram.com/prismolens_ofc"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaInstagram />
+              </a>
+            </div>
             <div>
               <div className={styles.detailLabel}>Instagram</div>
               <a href="https://instagram.com/prismolens_ofc" target="_blank" rel="noopener noreferrer" className={styles.detailLink}>
@@ -122,7 +130,15 @@ export default function ContactSection() {
           </div>
 
           <div className={styles.detail}>
-            <div className={styles.detailIcon}><FaTiktok /></div>
+            <div className={styles.detailIcon}>
+              <a
+                href="https://tiktok.com/@prismolensofc"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaTiktok />
+              </a>
+            </div>
             <div>
               <div className={styles.detailLabel}>Tiktok</div>
               <a href="https://tiktok.com/@prismolensofc" target="_blank" rel="noopener noreferrer" className={styles.detailLink}>
@@ -140,7 +156,15 @@ export default function ContactSection() {
           </div>
 
           <div className={styles.detail}>
-            <div className={styles.detailIcon}><FaFacebookMessenger /></div>
+            <div className={styles.detailIcon}>
+              <a
+                href="https://www.facebook.com/prismolensofficial/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaFacebookMessenger />
+              </a>
+            </div>
             <div>
               <div className={styles.detailLabel}>Messenger</div>
               <a href="https://www.facebook.com/prismolensofficial/" target="_blank" rel="noopener noreferrer" className={styles.detailLink}>
