@@ -5,10 +5,10 @@ import { useEffect, useRef } from 'react'
 import styles from './hero.module.css'
 
 const stats = [
-  { num: '500+', label: 'Events Covered' },
-  { num: '98%', label: 'Happy Clients' },
-  { num: '5★', label: 'Average Rating' },
-  { num: '3+', label: 'Years of Service' },
+  { num: '📸', label: 'Unlimited Shots' },
+  { num: '🎨', label: 'Custom Layouts' },
+  { num: '⚡', label: 'Instant Prints' },
+  { num: '💛', label: 'Friendly Service' },
 ]
 
 export default function Hero() {

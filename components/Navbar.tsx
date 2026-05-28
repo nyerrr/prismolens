@@ -96,7 +96,9 @@ export default function Navbar() {
         <div className={styles.drawerFooter}>
           <Link href="/contact" className={styles.drawerCta}>Book Now</Link>
           <p className={styles.drawerContact}>+63 917 123 4567</p>
-          <p className={styles.drawerContact}>hello@prismolens.ph</p>
+          <a href="https://m.me/prismolensphoto" target="_blank" rel="noopener noreferrer" className={styles.drawerContact}>
+            Message us on Messenger
+          </a>
         </div>
       </div>
     </>

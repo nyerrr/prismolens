@@ -7,13 +7,22 @@ import styles from './ContactSection.module.css'
 import { FaInstagram, FaFacebookMessenger, FaTiktok } from 'react-icons/fa6'
 
 const eventTypes = ['Wedding', 'Birthday / Debut', 'Corporate Event', 'Graduation', 'Prom / Cotillion', 'Other']
-const packageOptions = ['Classic (₱5,500 / 3hrs)', 'Gold (₱9,500 / 5hrs)', 'Prismo Elite (₱16,000 / 8hrs)', 'Custom Quote']
+const packageOptions = [
+  'Basic A - Classic / Standee (₱2,500)',
+  'Basic B - Photo Strip / Standee (₱2,800)',
+  'Basic C - Polaroid / Standee (₱3,200)',
+  'Magnetic A - Classic / Magnetic (₱3,500)',
+  'Magnetic B - Photo Strip / Magnetic (₱3,800)',
+  'Magnetic C - Polaroid / Magnetic (₱4,200)',
+  'Custom Quote',
+]
 
 type FormState = {
   firstName: string
   lastName: string
   email: string
   phone: string
+  messenger: string   
   eventType: string
   eventDate: string
   package: string
@@ -22,7 +31,7 @@ type FormState = {
 
 export default function ContactSection() {
   const [form, setForm] = useState<FormState>({
-    firstName: '', lastName: '', email: '', phone: '',
+    firstName: '', lastName: '', email: '', phone: '', messenger: '',
     eventType: '', eventDate: '', package: '', message: ''
   })
   const [submitted, setSubmitted] = useState(false)
@@ -42,6 +51,7 @@ export default function ContactSection() {
     last_name: form.lastName,
     email: form.email,
     phone: form.phone,
+    messenger: form.messenger,
     event_type: form.eventType,
     event_date: form.eventDate,
     package: form.package,
@@ -142,6 +152,16 @@ export default function ContactSection() {
                 <div className={styles.field}>
                   <label>Phone / Viber</label>
                   <input type="text" placeholder="+63 9XX XXX XXXX" value={form.phone} onChange={e => update('phone', e.target.value)} required />
+                </div>
+                <div className={styles.field}>
+                  <label>Messenger Name <span className={styles.optional}>(optional)</span></label>
+                  <input
+                    type="text"
+                    placeholder="e.g. Juan dela Cruz"
+                    value={form.messenger}
+                    onChange={e => update('messenger', e.target.value)}
+                    className={styles.messengerInput}
+                  />
                 </div>
               </div>
 

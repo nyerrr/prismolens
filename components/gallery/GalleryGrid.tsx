@@ -3,37 +3,46 @@
 import { useState } from 'react'
 import styles from './GalleryGrid.module.css'
 
-const categories = ['All', 'Wedding', 'Birthday', 'Corporate', 'Graduation', 'Prom']
+const events = [
+  {
+    id: 1,
+    title: "Aniela & Aaliyah's 7th Birthday",
+    venue: 'McDo Vermosa',
+    date: 'May 23, 2026',
+    category: 'Birthday',
+    embedUrl:
+      'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fprismolensofficial%2Fposts%2Fpfbid0H5ECDr9cJF6jRNR9x22RAh3jJoonFAxvTkYYjtMxEdqcQCKbxaWWSwkfiRN9oCJfl&show_text=true&width=500',
+    postUrl:
+      'https://www.facebook.com/prismolensofficial/posts/pfbid0H5ECDr9cJF6jRNR9x22RAh3jJoonFAxvTkYYjtMxEdqcQCKbxaWWSwkfiRN9oCJfl',
+  },
+]
 
-const photos = [
-  { id: 1, category: 'Wedding', label: 'Wedding · Tagaytay', bg: 'linear-gradient(135deg, #1a1208, #2d1f0a)', emoji: '💍', size: 'tall' },
-  { id: 2, category: 'Birthday', label: '18th Birthday · QC', bg: 'linear-gradient(135deg, #0d0d1a, #12103d)', emoji: '🎂', size: 'normal' },
-  { id: 3, category: 'Corporate', label: 'Corporate Gala · BGC', bg: 'linear-gradient(135deg, #0a1215, #0d1f28)', emoji: '🏢', size: 'normal' },
-  { id: 4, category: 'Wedding', label: 'Wedding · Batangas', bg: 'linear-gradient(135deg, #1a0d0d, #2d1010)', emoji: '💍', size: 'wide' },
-  { id: 5, category: 'Graduation', label: 'Graduation · Makati', bg: 'linear-gradient(135deg, #101508, #1a2310)', emoji: '🎓', size: 'normal' },
-  { id: 6, category: 'Prom', label: 'Prom Night · Pasig', bg: 'linear-gradient(135deg, #150a12, #200f1a)', emoji: '💃', size: 'tall' },
-  { id: 7, category: 'Birthday', label: 'Kids Party · Mandaluyong', bg: 'linear-gradient(135deg, #0f1a08, #182a0d)', emoji: '🎉', size: 'normal' },
-  { id: 8, category: 'Corporate', label: 'Product Launch · Taguig', bg: 'linear-gradient(135deg, #08100d, #0f1a16)', emoji: '🚀', size: 'wide' },
-  { id: 9, category: 'Wedding', label: 'Wedding · Quezon City', bg: 'linear-gradient(135deg, #1a1208, #2a1e0a)', emoji: '💒', size: 'normal' },
-  { id: 10, category: 'Graduation', label: 'Grad Party · Alabang', bg: 'linear-gradient(135deg, #0d1520, #0a1528)', emoji: '🎓', size: 'normal' },
-  { id: 11, category: 'Prom', label: 'Cotillion · San Juan', bg: 'linear-gradient(135deg, #1a0a15, #280f20)', emoji: '👑', size: 'normal' },
-  { id: 12, category: 'Birthday', label: 'Debut · Parañaque', bg: 'linear-gradient(135deg, #150d08, #221508)', emoji: '🌸', size: 'normal' },
+const categories = [
+  'All',
+  'Birthday',
+  'Wedding',
+  'Corporate',
+  'Graduation',
+  'Prom',
 ]
 
 export default function GalleryGrid() {
   const [active, setActive] = useState('All')
-  const [lightbox, setLightbox] = useState<null | typeof photos[0]>(null)
 
-  const filtered = active === 'All' ? photos : photos.filter(p => p.category === active)
+  const filtered =
+    active === 'All'
+      ? events
+      : events.filter((e) => e.category === active)
 
   return (
     <section className={styles.section}>
-      {/* Filter tabs */}
       <div className={styles.filters}>
-        {categories.map(cat => (
+        {categories.map((cat) => (
           <button
             key={cat}
-            className={`${styles.filter} ${active === cat ? styles.filterActive : ''}`}
+            className={`${styles.filter} ${
+              active === cat ? styles.filterActive : ''
+            }`}
             onClick={() => setActive(cat)}
           >
             {cat}
@@ -41,41 +50,72 @@ export default function GalleryGrid() {
         ))}
       </div>
 
-      {/* Grid */}
-      <div className={styles.grid}>
-        {filtered.map(photo => (
-          <div
-            key={photo.id}
-            className={`${styles.item} ${styles[photo.size]}`}
-            style={{ background: photo.bg }}
-            onClick={() => setLightbox(photo)}
-          >
-            <div className={styles.itemInner}>
-              <span className={styles.emoji}>{photo.emoji}</span>
-              <div className={styles.overlay}>
-                <span className={styles.overlayIcon}>⊕</span>
+      {filtered.length === 0 ? (
+        <div className={styles.empty}>
+          <p>No events in this category yet. Check back soon!</p>
+        </div>
+      ) : (
+        <div className={styles.grid}>
+          {filtered.map((event) => (
+            <div key={event.id} className={styles.card}>
+              <div className={styles.cardHeader}>
+                <div className={styles.category}>
+                  {event.category}
+                </div>
+
+                <div className={styles.cardMeta}>
+                  <span>📍 {event.venue}</span>
+                  <span>📅 {event.date}</span>
+                </div>
+
+                <h3 className={styles.title}>
+                  {event.title}
+                </h3>
               </div>
-              <div className={styles.itemLabel}>{photo.label}</div>
+
+              <div className={styles.embedWrap}>
+                <iframe
+                  src={event.embedUrl}
+                  width="100%"
+                  height="750"
+                  style={{
+                    border: 'none',
+                    overflow: 'hidden',
+                  }}
+                  scrolling="no"
+                  frameBorder="0"
+                  allowFullScreen
+                  allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                />
+              </div>
+
+              <a
+                href={event.postUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.viewBtn}
+              >
+                View All Photos on Facebook →
+              </a>
             </div>
-          </div>
-        ))}
-      </div>
-
-      <p className={styles.note}>
-        📸 Replace mock placeholders with your actual photos via the <code>photos</code> array in <code>GalleryGrid.tsx</code>
-      </p>
-
-      {/* Lightbox */}
-      {lightbox && (
-        <div className={styles.lightbox} onClick={() => setLightbox(null)}>
-          <div className={styles.lightboxCard} style={{ background: lightbox.bg }} onClick={e => e.stopPropagation()}>
-            <button className={styles.lightboxClose} onClick={() => setLightbox(null)}>✕</button>
-            <span className={styles.lightboxEmoji}>{lightbox.emoji}</span>
-            <div className={styles.lightboxLabel}>{lightbox.label}</div>
-            <div className={styles.lightboxCategory}>{lightbox.category}</div>
-          </div>
+          ))}
         </div>
       )}
+
+      <div className={styles.moreCTA}>
+        <p className={styles.moreText}>
+          More events coming soon! Follow us for updates.
+        </p>
+
+        <a
+          href="https://www.facebook.com/prismolensofficial"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.fbLink}
+        >
+          Visit our Facebook Page
+        </a>
+      </div>
     </section>
   )
 }

@@ -14,7 +14,7 @@ export default function HowItWorks() {
         <div className={styles.header}>
           <span className={styles.label}>The Process</span>
           <h2 className={styles.title}>How It Works</h2>
-          <p className={styles.sub}>From inquiry to event day — here's what to expect when you book with PrismoLens.</p>
+          <p className={styles.sub}>From inquiry to event day - here's what to expect when you book with PrismoLens.</p>
         </div>
         <div className={styles.steps}>
           {steps.map(({ num, title, desc }, i) => (

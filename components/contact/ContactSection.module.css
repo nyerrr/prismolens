@@ -69,6 +69,10 @@
   margin-top: 2px;
 }
 
+.messengerInput {
+  width: 100%;
+}
+
 .detailLink {
   font-size: 14px;
   color: var(--white);

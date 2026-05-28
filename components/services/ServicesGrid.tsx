@@ -40,7 +40,7 @@ const services = [
   {
     icon: '🎉',
     title: 'Custom Events',
-    description: 'Have a unique occasion? We customize every booth setup to match your vision — theme, props, backdrop, print design, all of it.',
+    description: 'Have a unique occasion? We customize every booth setup to match your vision - theme, props, backdrop, print design, all of it.',
     price: 'Request a quote',
     featured: false,
   },
@@ -52,7 +52,6 @@ export default function ServicesGrid() {
       <div className={styles.grid}>
         {services.map(({ icon, title, description, price, featured }) => (
           <div key={title} className={`${styles.card} ${featured ? styles.featured : ''}`}>
-            {featured && <div className={styles.featuredBadge}>Most Booked</div>}
             <div className={styles.iconWrap}>
               <span className={styles.icon}>{icon}</span>
             </div>
