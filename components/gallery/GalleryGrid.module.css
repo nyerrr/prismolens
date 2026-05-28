@@ -23,6 +23,18 @@
   transition: all 0.2s;
   font-family: var(--font-body);
   cursor: pointer;
+} 
+.photoBadge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(0,0,0,0.5);
+  color: var(--white);
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 100px;
+  backdrop-filter: blur(4px);
+  border: 0.5px solid rgba(255,255,255,0.15);
 }
 
 .filter:hover {

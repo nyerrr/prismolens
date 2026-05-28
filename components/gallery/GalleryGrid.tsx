@@ -10,10 +10,11 @@ const events = [
     venue: 'McDo Vermosa',
     date: 'May 23, 2026',
     category: 'Birthday',
-    embedUrl:
-      'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fprismolensofficial%2Fposts%2Fpfbid0H5ECDr9cJF6jRNR9x22RAh3jJoonFAxvTkYYjtMxEdqcQCKbxaWWSwkfiRN9oCJfl&show_text=true&width=500',
+    emoji: '🎂',
+    bg: 'linear-gradient(135deg, #2d0a3a, #1a0d2e)',
     postUrl:
       'https://www.facebook.com/prismolensofficial/posts/pfbid0H5ECDr9cJF6jRNR9x22RAh3jJoonFAxvTkYYjtMxEdqcQCKbxaWWSwkfiRN9oCJfl',
+    photoCount: '100+',
   },
 ]
 
@@ -57,47 +58,39 @@ export default function GalleryGrid() {
       ) : (
         <div className={styles.grid}>
           {filtered.map((event) => (
-            <div key={event.id} className={styles.card}>
-              <div className={styles.cardHeader}>
-                <div className={styles.category}>
-                  {event.category}
+            <a
+              key={event.id}
+              href={event.postUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.card}
+              style={{ background: event.bg }}
+            >
+              <div className={styles.cardInner}>
+                <div className={styles.emoji}>{event.emoji}</div>
+
+                <div className={styles.photoBadge}>
+                  {event.photoCount} photos
                 </div>
 
-                <div className={styles.cardMeta}>
-                  <span>📍 {event.venue}</span>
-                  <span>📅 {event.date}</span>
+                <div className={styles.overlay}>
+                  <span className={styles.viewText}>
+                    View Photos on Facebook →
+                  </span>
                 </div>
 
-                <h3 className={styles.title}>
-                  {event.title}
-                </h3>
-              </div>
+                <div className={styles.cardInfo}>
+                  <div className={styles.category}>{event.category}</div>
 
-              <div className={styles.embedWrap}>
-                <iframe
-                  src={event.embedUrl}
-                  width="100%"
-                  height="750"
-                  style={{
-                    border: 'none',
-                    overflow: 'hidden',
-                  }}
-                  scrolling="no"
-                  frameBorder="0"
-                  allowFullScreen
-                  allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                />
-              </div>
+                  <h3 className={styles.title}>{event.title}</h3>
 
-              <a
-                href={event.postUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.viewBtn}
-              >
-                View All Photos on Facebook →
-              </a>
-            </div>
+                  <div className={styles.meta}>
+                    <span>📍 {event.venue}</span>
+                    <span>📅 {event.date}</span>
+                  </div>
+                </div>
+              </div>
+            </a>
           ))}
         </div>
       )}
