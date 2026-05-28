@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 export default function PackagesPage() {
   return (
     <>
-     <PackagesHero />
+      <PackagesHero />
       <FadeIn delay={0.1}><PackagesGrid /></FadeIn>
       <FadeIn delay={0.2}><PackagesCompare /></FadeIn>
       <FadeIn delay={0.3}><PackagesCTA /></FadeIn>
