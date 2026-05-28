@@ -36,7 +36,7 @@ export default function Testimonials() {
     if (!form.name || !form.event || !form.text) return
     const { error } = await supabase
       .from('testimonials')
-      .insert([{ ...form, approved: false }])
+      .insert({ name: form.name, event: form.event, text: form.text, rating: form.rating })
     if (!error) {
       setSubmitted(true)
       setForm({ name: '', event: '', text: '', rating: 5 })
