@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import styles from './Navbar.module.css'
+import Image from 'next/image'
 
 const links = [
   { href: '/', label: 'Home' },
@@ -28,7 +29,9 @@ export default function Navbar() {
     <>
       <nav className={styles.nav}>
         <Link href="/" className={styles.logo}>
-          <div className={styles.logoCircle}>📸</div>
+          <div className={styles.logoCircle}>
+            <Image src="/prismo_logo.jpg" alt="PrismoLens Logo" width={28} height={28} style={{ borderRadius: '50%', objectFit: 'cover' }} />
+          </div>
           <span className={styles.brand}>
             <span className={styles.brandAccent}>Prismo</span>Lens
           </span>
@@ -72,7 +75,9 @@ export default function Navbar() {
       <div className={`${styles.drawer} ${open ? styles.drawerOpen : ''}`}>
         <div className={styles.drawerHeader}>
           <div className={styles.drawerLogo}>
-            <div className={styles.logoCircle}>📸</div>
+            <div className={styles.logoCircle}>
+              <Image src="/prismo_logo.jpg" alt="PrismoLens Logo" width={28} height={28} style={{ borderRadius: '50%', objectFit: 'cover' }} />
+            </div>
             <span className={styles.brand}>
               <span className={styles.brandAccent}>Prismo</span>Lens
             </span>
