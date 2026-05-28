@@ -4,7 +4,13 @@ import Navbar from '@/components/Navbar'
 
 const BASE_URL = 'https://prismolens.vercel.app'
 
+
 export const metadata: Metadata = {
+
+  icons: {
+    icon: '/favicon-32x32.png',
+  },
+
   metadataBase: new URL(BASE_URL),
   title: {
     default: 'PrismoLens Photo Booth Services Philippines',
