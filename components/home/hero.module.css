@@ -178,8 +178,8 @@
 
 .photoCard {
   position: relative;
-  width: 260px;
-  height: 360px;
+  width: 350px;
+  height: 470px;
   border-radius: 16px;
   overflow: hidden;
   border: 2px solid rgba(255, 255, 255, 0.15);
@@ -194,8 +194,8 @@
 }
 
 .photoCardMiddle {
-  width: 180px;
-  height: 500px;
+  width: 350px;
+  height: 470px;
   background: transparent;
   border: none;
   transform: translateY(-16px);

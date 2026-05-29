@@ -46,7 +46,7 @@ export default function Hero() {
             style={{ objectFit: 'contain', objectPosition: 'center' }} 
           />
         </div>
-        <div className={styles.photoCard}>
+        <div className={`${styles.photoCard} ${styles.photoCardThird}`}>
           <Image 
             src="/hero-polaroid.webp" 
             alt="Polaroid photo booth" 
