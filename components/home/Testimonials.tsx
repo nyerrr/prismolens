@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
 import styles from './Testimonials.module.css'
 
@@ -12,42 +12,65 @@ type Review = {
   rating: number
 }
 
+const fallback: Review[] = [
+  { id: '1', name: 'Angela Cruz', event: 'Wedding · Tagaytay', text: 'PrismoLens made our wedding unforgettable! Guests were lining up all night for the booth.', rating: 5 },
+  { id: '2', name: 'Marco Reyes', event: '18th Birthday · Quezon City', text: 'Super fun setup and the prints came out amazing. Everyone loved the custom photo strips!', rating: 5 },
+  { id: '3', name: 'Jasmine Santos', event: 'Corporate Gala · BGC', text: 'Very professional team, arrived on time, and the setup was gorgeous.', rating: 5 },
+]
 
 export default function Testimonials() {
-  const [reviews, setReviews] = useState<Review[]>([])
+  const [reviews, setReviews] = useState<Review[]>(fallback)
   const [loading, setLoading] = useState(true)
   const [submitted, setSubmitted] = useState(false)
-  const [form, setForm] = useState({ name: '', event: '', text: '', rating: 5 })
+  const [showModal, setShowModal] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [submittedName, setSubmittedName] = useState('')
+  const [form, setForm] = useState({ name: '', email: '', event: '', text: '', rating: 5 })
 
-  useEffect(() => { fetchReviews() }, [])
-
-  async function fetchReviews() {
+  const fetchReviews = useCallback(async () => {
     const { data, error } = await supabase
       .from('testimonials')
       .select('*')
       .eq('approved', true)
       .order('created_at', { ascending: false })
-    if (!error && data) setReviews(data)
+    if (!error && data && data.length > 0) setReviews(data)
     setLoading(false)
-  }
+  }, [])
+
+  useEffect(() => {
+    fetchReviews()
+  }, [fetchReviews])
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    if (!form.name || !form.event || !form.text) return
+    if (!form.name || !form.event || !form.text || !form.email) return
+    setSending(true)
+
     const { error } = await supabase
       .from('testimonials')
-      .insert({ name: form.name, event: form.event, text: form.text, rating: form.rating })
+      .insert([{ ...form, approved: false }])
+
     if (!error) {
+      await fetch('/api/review', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: form.name, email: form.email }),
+      })
+      setSubmittedName(form.name)
       setSubmitted(true)
-      setForm({ name: '', event: '', text: '', rating: 5 })
+      setShowModal(true)
+      setForm({ name: '', email: '', event: '', text: '', rating: 5 })
     }
+
+    setSending(false)
   }
 
   return (
     <section className={styles.section}>
       <div className={styles.inner}>
         <div className={styles.header}>
-          <p className={styles.title}>Reviews:</p>
+          <span className={styles.label}>Trusted by</span>
+          <h2 className={styles.title}>What Our Clients Say</h2>
         </div>
 
         {loading ? (
@@ -88,15 +111,25 @@ export default function Testimonials() {
                   />
                 </div>
                 <div className={styles.field}>
-                  <label>Event Type & Location</label>
+                  <label>Email Address</label>
                   <input
-                    type="text"
-                    placeholder="Wedding · Tagaytay"
-                    value={form.event}
-                    onChange={e => setForm({ ...form, event: e.target.value })}
+                    type="email"
+                    placeholder="juan@email.com"
+                    value={form.email}
+                    onChange={e => setForm({ ...form, email: e.target.value })}
                     required
                   />
                 </div>
+              </div>
+              <div className={styles.field}>
+                <label>Event Type & Location</label>
+                <input
+                  type="text"
+                  placeholder="Wedding · Tagaytay"
+                  value={form.event}
+                  onChange={e => setForm({ ...form, event: e.target.value })}
+                  required
+                />
               </div>
               <div className={styles.field}>
                 <label>Rating</label>
@@ -120,11 +153,29 @@ export default function Testimonials() {
                   required
                 />
               </div>
-              <button type="submit" className={styles.submit}>Submit Review</button>
+              <button type="submit" className={styles.submit} disabled={sending}>
+                {sending ? 'Sending...' : 'Submit Review'}
+              </button>
             </form>
           )}
         </div>
       </div>
+
+      {showModal && (
+        <div className={styles.modalOverlay} onClick={() => setShowModal(false)}>
+          <div className={styles.modal} onClick={e => e.stopPropagation()}>
+            <div className={styles.modalIcon}>✦</div>
+            <h3 className={styles.modalTitle}>Review Submitted!</h3>
+            <p className={styles.modalText}>
+              Thank you for leaving a review, <strong>{submittedName}</strong>! 
+              We've sent a confirmation to your email. We'll validate your review and get back to you shortly.
+            </p>
+            <button className={styles.modalBtn} onClick={() => setShowModal(false)}>
+              Done
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   )
 }
