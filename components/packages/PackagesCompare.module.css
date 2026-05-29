@@ -86,3 +86,40 @@
   background: rgba(212,168,67,0.04);
   color: var(--gold);
 }
+
+@media (max-width: 640px) {
+  .section {
+    padding: 0 1rem 3rem;
+  }
+
+  .inner {
+    padding: 2rem 1rem;
+  }
+
+  .thFeature {
+    width: 45%;
+    font-size: 11px;
+    padding: 10px 6px;
+  }
+
+  .th {
+    font-size: 11px;
+    padding: 10px 6px;
+    width: 27.5%;
+  }
+
+  .tdFeature {
+    font-size: 11px;
+    padding: 10px 6px;
+  }
+
+  .td {
+    font-size: 11px;
+    padding: 10px 6px;
+  }
+
+  .table {
+    table-layout: fixed;
+    width: 100%;
+  }
+}
