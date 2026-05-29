@@ -19,16 +19,22 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
-      if (!session && pathname !== '/admin') router.push('/admin')
+      if (!session && pathname !== '/admin') {
+        router.push('/admin')
+      }
       setChecking(false)
     })
-  }, [pathname])
+  }, [pathname, router])
 
-  // Close sidebar on route change
   useEffect(() => { setSidebarOpen(false) }, [pathname])
 
   if (pathname === '/admin') return <>{children}</>
-  if (checking) return null
+
+  if (checking) return (
+    <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#0D0D0D' }}>
+      <p style={{ color: '#D4A843', fontSize: '14px' }}>Loading...</p>
+    </div>
+  )
 
   async function handleLogout() {
     await supabase.auth.signOut()
@@ -37,13 +43,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   const SidebarContent = () => (
     <>
-      {/* Logo */}
       <div style={{ marginBottom: '2rem', paddingLeft: '0.5rem' }}>
         <div style={{ fontWeight: 700, fontSize: '1rem', color: '#D4A843' }}>PrismoLens</div>
         <div style={{ fontSize: '11px', color: '#8A8078', marginTop: '2px' }}>Admin Panel</div>
       </div>
-
-      {/* Nav */}
       <nav style={{ display: 'flex', flexDirection: 'column', gap: '4px', flex: 1 }}>
         {navItems.map(({ label, href, icon }) => {
           const active = pathname === href
@@ -71,8 +74,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           )
         })}
       </nav>
-
-      {/* Logout */}
       <button
         onClick={handleLogout}
         style={{
@@ -107,10 +108,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           .admin-sidebar-fixed { display: none !important; }
         }
       `}</style>
-
       <div style={{ display: 'flex', minHeight: '100vh' }}>
-
-        {/* Sidebar — desktop */}
         <aside className="admin-sidebar-fixed" style={{
           width: '220px',
           background: '#0E0E0E',
@@ -126,8 +124,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         }}>
           <SidebarContent />
         </aside>
-
-        {/* Mobile top bar */}
         <div className="admin-mobile-bar" style={{
           position: 'fixed',
           top: '64px',
@@ -150,16 +146,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             {sidebarOpen ? '✕' : '☰'}
           </button>
         </div>
-
-        {/* Mobile drawer */}
         {sidebarOpen && (
           <>
             <div
               onClick={() => setSidebarOpen(false)}
-              style={{
-                position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)',
-                zIndex: 45, top: '116px',
-              }}
+              style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', zIndex: 45, top: '116px' }}
             />
             <aside style={{
               position: 'fixed',
@@ -178,8 +169,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             </aside>
           </>
         )}
-
-        {/* Main content */}
         <main className="admin-main" style={{
           flex: 1,
           padding: '1.5rem',
