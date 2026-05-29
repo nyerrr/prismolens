@@ -1,23 +1,17 @@
 /* Hero Section */
 .hero {
   min-height: 100vh;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   position: relative;
   overflow: hidden;
-
   padding: 4rem 2rem;
   padding-top: calc(64px + 4rem);
-
   text-align: center;
-
   opacity: 0;
   transform: translateY(20px);
-
   transition:
     opacity 0.8s ease,
     transform 0.8s ease;
@@ -32,14 +26,11 @@
 .bg {
   position: absolute;
   inset: 0;
-
-  background:
-    radial-gradient(
-      ellipse 80% 60% at 50% 40%,
-      rgba(212, 168, 67, 0.08) 0%,
-      transparent 70%
-    );
-
+  background: radial-gradient(
+    ellipse 80% 60% at 50% 40%,
+    rgba(212, 168, 67, 0.08) 0%,
+    transparent 70%
+  );
   pointer-events: none;
 }
 
@@ -47,22 +38,17 @@
   position: absolute;
   top: 50%;
   left: 50%;
-
   width: 600px;
   height: 600px;
-
   border: 0.5px solid rgba(212, 168, 67, 0.1);
   border-radius: 50%;
-
   transform: translate(-50%, -50%);
-
   pointer-events: none;
 }
 
 .ring2 {
   width: 900px;
   height: 900px;
-
   border-color: rgba(212, 168, 67, 0.05);
 }
 
@@ -70,17 +56,13 @@
 .badge {
   margin-bottom: 2rem;
   padding: 6px 16px;
-
   background: rgba(212, 168, 67, 0.12);
   border: 0.5px solid rgba(212, 168, 67, 0.3);
   border-radius: 100px;
-
   color: var(--gold);
-
   font-size: 12px;
   letter-spacing: 2px;
   text-transform: uppercase;
-
   animation: fadeUp 0.6s ease 0.2s both;
 }
 
@@ -88,12 +70,10 @@
 .heading {
   max-width: 800px;
   margin-bottom: 1.5rem;
-
   font-family: var(--font-display);
   font-size: clamp(3rem, 8vw, 6rem);
   font-weight: 900;
   line-height: 1.05;
-
   animation: fadeUp 0.6s ease 0.35s both;
 }
 
@@ -106,12 +86,9 @@
 .sub {
   max-width: 500px;
   margin-bottom: 3rem;
-
   color: var(--muted);
-
   font-size: 18px;
   line-height: 1.7;
-
   animation: fadeUp 0.6s ease 0.5s both;
 }
 
@@ -121,24 +98,17 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
-
   animation: fadeUp 0.6s ease 0.65s both;
 }
 
 .btnPrimary {
   padding: 14px 32px;
-
   background: var(--gold);
   border-radius: 100px;
-
   color: var(--dark);
-
   font-size: 15px;
   font-weight: 600;
-
-  transition:
-    opacity 0.2s,
-    transform 0.2s;
+  transition: opacity 0.2s, transform 0.2s;
 }
 
 .btnPrimary:hover {
@@ -148,18 +118,12 @@
 
 .btnOutline {
   padding: 14px 32px;
-
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 100px;
-
   color: var(--white);
-
   font-size: 15px;
-
-  transition:
-    border-color 0.2s,
-    transform 0.2s;
+  transition: border-color 0.2s, transform 0.2s;
 }
 
 .btnOutline:hover {
@@ -173,9 +137,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 3rem;
-
   margin-top: 5rem;
-
   animation: fadeUp 0.6s ease 0.8s both;
 }
 
@@ -183,15 +145,12 @@
   font-family: var(--font-display);
   font-size: 2.5rem;
   font-weight: 700;
-
   color: var(--gold);
 }
 
 .statLabel {
   margin-top: 4px;
-
   color: var(--muted);
-
   font-size: 13px;
 }
 
@@ -201,14 +160,13 @@
     opacity: 0;
     transform: translateY(16px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-/* Photo strip */
+/* Photo Strip */
 .photoStrip {
   display: flex;
   gap: 3rem;
@@ -227,7 +185,7 @@
   border: 2px solid rgba(255, 255, 255, 0.15);
   flex-shrink: 0;
   transition: transform 0.3s, border-color 0.3s;
-  background: transparent !important;
+  background: transparent;
 }
 
 .photoCard:hover {
@@ -236,72 +194,92 @@
 }
 
 .photoCardMiddle {
-  width: 105px;   /* was 120px */
-  height: 420px;
+  width: 180px;
+  height: 500px;
   background: transparent;
-  border: none;   /* remove border too since there's no bg card anymore */
+  border: none;
   transform: translateY(-16px);
   box-shadow: none;
 }
 
 .photoCardMiddle:hover {
   transform: translateY(-24px);
-  border-color: rgba(212, 168, 67, 0.9);
 }
 
+/* Tablet */
+@media (max-width: 768px) {
+  .photoStrip {
+    gap: 1.5rem;
+  }
+
+  .photoCard {
+    width: 180px;
+    height: 250px;
+    border-radius: 14px;
+  }
+
+  .photoCardMiddle {
+    width: 85px;
+    height: 290px;
+    background: transparent;
+    border: none;
+    transform: translateY(-12px);
+    box-shadow: none;
+  }
+
+  .photoCardMiddle:hover {
+    transform: translateY(-18px);
+  }
+}
+
+/* Mobile */
 @media (max-width: 640px) {
   .photoStrip {
-    gap: 0.75rem;
+    gap: 1rem;
   }
 
   .photoCard {
     width: 120px;
     height: 200px;
-    border-radius: 10px;
+    border-radius: 12px;
   }
 
   .photoCardMiddle {
-    width: 125px;
-    height: 180px;
-    transform: translateY(-10px);
+    width: 85px;
+    height: 290px;
+    background: transparent;
+    border: none;
+    transform: translateY(-12px);
+    box-shadow: none;
   }
 
   .photoCardMiddle:hover {
-    transform: translateY(-16px);
+    transform: translateY(-14px);
   }
 }
 
-@media (max-width: 640px) {
+/* Small Mobile */
+@media (max-width: 380px) {
   .photoStrip {
     gap: 0.75rem;
   }
 
   .photoCard {
-    width: 130px;
-    height: 185px;
+    width: 110px;
+    height: 160px;
     border-radius: 10px;
   }
 
   .photoCardMiddle {
-    width: 150px;
-    height: 210px;
-    transform: translateY(-10px);
+    width: 70px;
+    height: 190px;
+    background: transparent;
+    border: none;
+    transform: translateY(-8px);
+    box-shadow: none;
   }
 
   .photoCardMiddle:hover {
-    transform: translateY(-16px);
+    transform: translateY(-12px);
   }
-}
-
-.photoCard {
-  position: relative;
-  width: 260px;
-  height: 360px;
-  border-radius: 16px;
-  overflow: hidden;
-  border: 2px solid rgba(255,255,255,0.08);
-  flex-shrink: 0;
-  transition: transform 0.3s;
-  background: var(--dark-3);
-  background: transparent !important;
 }
