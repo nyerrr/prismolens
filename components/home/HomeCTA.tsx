@@ -17,7 +17,7 @@ export default function HomeCTA() {
       </section>
       <footer className={styles.footer}>
         <div className={styles.footerBrand}>PrismoLens Photo Booth Services</div>
-        <p className={styles.footerSub}>© 2025 PrismoLens · Philippines · Made with ✦</p>
+        <p className={styles.footerSub}>© {new Date().getFullYear()} PrismoLens · Philippines</p>
       </footer>
     </>
   )
