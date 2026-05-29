@@ -11,7 +11,7 @@ const events = [
     date: 'May 23, 2026',
     category: 'Birthday',
     emoji: '🎂',
-    image: '/707581292_1423947829756488_5691220500371327261_n.jpg',
+    image: '707581292_1423947829756488_5691220500371327261_n.webp',
     bg: 'linear-gradient(135deg, #2d0a3a, #1a0d2e)',
     postUrl:
       'https://www.facebook.com/prismolensofficial/posts/pfbid0H5ECDr9cJF6jRNR9x22RAh3jJoonFAxvTkYYjtMxEdqcQCKbxaWWSwkfiRN9oCJfl',

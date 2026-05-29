@@ -76,7 +76,7 @@ export default function Navbar() {
         <div className={styles.drawerHeader}>
           <div className={styles.drawerLogo}>
             <div className={styles.logoCircle}>
-              <Image src="/prismo_logo.jpg" alt="PrismoLens Logo" width={28} height={28} style={{ borderRadius: '50%', objectFit: 'cover' }} />
+              <Image src="/prismo_logo.webp" alt="PrismoLens Logo" width={28} height={28} style={{ borderRadius: '50%', objectFit: 'cover' }} />
             </div>
             <span className={styles.brand}>
               <span className={styles.brandAccent}>Prismo</span>Lens
