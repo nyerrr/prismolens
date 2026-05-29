@@ -87,7 +87,9 @@ export default function ContactSection() {
       message: form.message,
     }
 
-    const { error } = await supabase.from('inquiries').insert([payload])
+    const { error } = await supabase
+      .from('inquiries')
+      .upsert([payload], { onConflict: 'email'})
 
     if (!error) {
       await fetch('/api/inquiry', {
