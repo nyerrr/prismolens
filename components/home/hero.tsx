@@ -1,15 +1,9 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useEffect, useRef } from 'react'
 import styles from './hero.module.css'
-
-const stats = [
-  { num: '📸', label: 'Unlimited Shots' },
-  { num: '🎨', label: 'Custom Layouts' },
-  { num: '⚡', label: 'Instant Prints' },
-  { num: '💛', label: 'Friendly Service' },
-]
 
 export default function Hero() {
   const ref = useRef<HTMLDivElement>(null)
@@ -31,13 +25,36 @@ export default function Hero() {
         <Link href="/packages" className={styles.btnPrimary}>View Packages</Link>
         <Link href="/gallery" className={styles.btnOutline}>See Our Work</Link>
       </div>
-      <div className={styles.stats}>
-        {stats.map(({ num, label }) => (
-          <div key={label} className={styles.stat}>
-            <div className={styles.statNum}>{num}</div>
-            <div className={styles.statLabel}>{label}</div>
-          </div>
-        ))}
+
+      {/* Photo strip */}
+      <div className={styles.photoStrip}>
+        <div className={styles.photoCard}>
+          <Image 
+            src="/hero-classic.webp" 
+            alt="Classic photo booth" 
+            fill 
+            sizes="260px"
+            style={{ objectFit: 'cover', objectPosition: 'center' }} 
+          />
+        </div>
+        <div className={`${styles.photoCard} ${styles.photoCardMiddle}`}>
+          <Image 
+            src="/hero-strip.webp" 
+            alt="Photo strip booth" 
+            fill 
+            sizes="290px"
+            style={{ objectFit: 'contain', objectPosition: 'center' }} 
+          />
+        </div>
+        <div className={styles.photoCard}>
+          <Image 
+            src="/hero-polaroid.webp" 
+            alt="Polaroid photo booth" 
+            fill 
+            sizes="260px"
+            style={{ objectFit: 'cover', objectPosition: 'center' }} 
+          />
+        </div>
       </div>
     </section>
   )

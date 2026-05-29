@@ -207,3 +207,101 @@
     transform: translateY(0);
   }
 }
+
+/* Photo strip */
+.photoStrip {
+  display: flex;
+  gap: 3rem;
+  margin-top: 4rem;
+  align-items: center;
+  justify-content: center;
+  animation: fadeUp 0.6s ease 0.9s both;
+}
+
+.photoCard {
+  position: relative;
+  width: 260px;
+  height: 360px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  flex-shrink: 0;
+  transition: transform 0.3s, border-color 0.3s;
+  background: transparent !important;
+}
+
+.photoCard:hover {
+  transform: translateY(-8px);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.photoCardMiddle {
+  width: 105px;   /* was 120px */
+  height: 420px;
+  background: transparent;
+  border: none;   /* remove border too since there's no bg card anymore */
+  transform: translateY(-16px);
+  box-shadow: none;
+}
+
+.photoCardMiddle:hover {
+  transform: translateY(-24px);
+  border-color: rgba(212, 168, 67, 0.9);
+}
+
+@media (max-width: 640px) {
+  .photoStrip {
+    gap: 0.75rem;
+  }
+
+  .photoCard {
+    width: 120px;
+    height: 200px;
+    border-radius: 10px;
+  }
+
+  .photoCardMiddle {
+    width: 125px;
+    height: 180px;
+    transform: translateY(-10px);
+  }
+
+  .photoCardMiddle:hover {
+    transform: translateY(-16px);
+  }
+}
+
+@media (max-width: 640px) {
+  .photoStrip {
+    gap: 0.75rem;
+  }
+
+  .photoCard {
+    width: 130px;
+    height: 185px;
+    border-radius: 10px;
+  }
+
+  .photoCardMiddle {
+    width: 150px;
+    height: 210px;
+    transform: translateY(-10px);
+  }
+
+  .photoCardMiddle:hover {
+    transform: translateY(-16px);
+  }
+}
+
+.photoCard {
+  position: relative;
+  width: 260px;
+  height: 360px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 2px solid rgba(255,255,255,0.08);
+  flex-shrink: 0;
+  transition: transform 0.3s;
+  background: var(--dark-3);
+  background: transparent !important;
+}
